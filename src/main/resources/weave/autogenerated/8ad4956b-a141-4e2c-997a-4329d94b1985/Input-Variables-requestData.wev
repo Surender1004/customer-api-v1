@@ -1,0 +1,23 @@
+%dw 2.0
+
+type auto_8ad4956b_a141_4e2c_997a_4329d94b1985_Input_Variables_requestData = {|
+  payload: {
+    customerRegistraionRequest: {
+      address: String, 
+      registrationId?: String, 
+      name: String, 
+      mobile: String, 
+      email: String, 
+      _?: Any
+    }, 
+    _?: Any
+  } | String, 
+  queryParams: {|  |} | String, 
+  uriParams: {|  |} | String, 
+  headers: {|
+    transactionid: String, 
+    clientid: String, 
+    clientsecret: String
+  |} | String
+|}
+

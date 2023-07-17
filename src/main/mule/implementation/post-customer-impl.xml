@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd">
+	<sub-flow name="post-customer-implSub_Flow" doc:id="8ad4956b-a141-4e2c-997a-4329d94b1985" >
+		<set-payload value='#[%dw 2.0&#10;output application/json&#10;---&#10;[&#10;	{&#10;		"name__c": vars.requestData.payload.customerRegistraionRequest.name,&#10;		"email__c": vars.requestData.payload.customerRegistraionRequest.email,&#10;		"mobile__c": vars.requestData.payload.customerRegistraionRequest.mobile,&#10;		"address__c": vars.requestData.payload.customerRegistraionRequest.address,&#10;		"registrationid__c": vars.requestData.payload.customerRegistraionRequest.registrationId&#10;	}&#10;]]' doc:name="Set Payload" doc:id="97ed45e3-4ed7-4e34-9558-ded78c935672" />
+		<logger level="INFO" doc:name="RequestLogger" doc:id="c0e34945-9288-4837-b376-2e67e7101a42" message="#[%dw 2.0&#10;output application/json indent = false&#10;---&#10;{&#10;	transactionId:vars.requestData.headers.'transactionid',&#10;	AppName: app.name,&#10;	FlowName: flow.name,&#10;	BusinessProcessName: &quot;Customer Registration&quot;,&#10;	Category: &quot;Customer&quot;,&#10;	DestinationApplication: &quot;Salesforce&quot;,&#10;	txnstate: &quot;SFDC Request&quot;	&#10;}]"/>
+		<salesforce:create doc:name="Create" doc:id="72dd1b1d-87ba-422b-a679-850b1520f66c" config-ref="Salesforce_Config" type="customerObj__c"/>
+		<logger level="INFO" doc:name="ResponseLogger" doc:id="59b0bc10-5c41-407b-a851-41630b099e89" message="#[%dw 2.0&#10;output application/json indent = false&#10;---&#10;{&#10;	transactionId:vars.requestData.headers.'transactionid',&#10;	AppName: app.name,&#10;	FlowName: flow.name,&#10;	BusinessProcessName: &quot;Customer Registration&quot;,&#10;	Category: &quot;Customer&quot;,&#10;	DestinationApplication: &quot;Salesforce&quot;,&#10;	txnstate: &quot;SFDC Response&quot;	&#10;}]"/>
+		<set-payload value="#[output application/json&#10;---&#10;{&#10;  &quot;customerRegistrationResponse&quot;: {&#10;    &quot;message&quot;: &quot;Success&quot;,&#10;    &quot;transactionid&quot;: vars.requestData.headers.'transactionId' &#10;    }&#10;}]" doc:name="Set Payload" doc:id="600f6017-faf9-4084-9148-e630849d07da" />
+	</sub-flow>
+</mule>
