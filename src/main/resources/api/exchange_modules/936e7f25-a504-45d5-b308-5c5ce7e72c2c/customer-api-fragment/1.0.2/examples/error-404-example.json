@@ -1,0 +1,10 @@
+{
+  "msg": "failed operation",
+  "code": 404,
+  "eventid": "adbnch-fhrgjt-dhfjgt-fjgut",
+  "error": {
+    "type": "Not Found",
+    "title": "Resource not found",
+    "details": "The given resource is not available"
+  }
+}

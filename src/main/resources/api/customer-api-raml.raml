@@ -1,0 +1,27 @@
+#%RAML 1.0
+title: customer-api-raml
+
+uses:
+  common-library: exchange_modules/936e7f25-a504-45d5-b308-5c5ce7e72c2c/customer-api-fragment/1.0.2/customer-api-fragment.raml
+
+/registrations:
+  post:
+    description: This API will register customer into salesforce.
+    is:
+      - common-library.common-headers
+      - common-library.error-response
+    body:
+      application/json:
+        type: object
+        properties:
+          customerRegistraionRequest:
+            type: common-library.registration-request
+    responses:
+      201:
+        body:
+          application/json:
+            type: object
+            properties:
+              customerRegistrationResponse:
+                type: common-library.success-response
+    

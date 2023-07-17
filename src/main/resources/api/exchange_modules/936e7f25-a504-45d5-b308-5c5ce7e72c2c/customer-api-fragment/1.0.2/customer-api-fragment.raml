@@ -1,0 +1,10 @@
+#%RAML 1.0 Library
+
+types:
+  error-response: !include dataType/error-response-dataType.raml
+  registration-request: !include dataType/registration-request-dataType.raml
+  success-response: !include dataType/success-response-dataType.raml
+
+traits:
+  common-headers: !include traits/common-headers-trait.raml
+  error-response: !include traits/error-response-trait.raml

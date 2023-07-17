@@ -1,0 +1,10 @@
+{
+  "msg": "failed operation",
+  "code": 500,
+  "eventid": "adbnch-fhrgjt-dhfjgt-fjgut",
+  "error": {
+    "type": "Server Error",
+    "title": "Internal server error",
+    "details": "Internal server error"
+  }
+}
